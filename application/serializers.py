@@ -9,8 +9,6 @@ class AdvisorSerializer(serializers.ModelSerializer):
 
 
 class StudentSerializer(serializers.ModelSerializer):
-    advisor = AdvisorSerializer()
-
     class Meta:
         model = Student
         fields = '__all__'

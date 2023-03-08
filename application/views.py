@@ -1,4 +1,7 @@
+import http
+
 from rest_framework import generics
+from django.http import JsonResponse
 from .models import Advisor, Student
 from .serializers import AdvisorSerializer, StudentSerializer
 from rest_framework.permissions import IsAuthenticated
@@ -52,3 +55,11 @@ class StudentDetails(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated]
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
+
+
+class InvalidURLView(APIView):
+    def get(self, request, path=None):
+        response = {
+            'error': 'invalid URL'
+        }
+        return Response(response, status=status.HTTP_404_NOT_FOUND)
